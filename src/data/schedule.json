@@ -1,18 +1,42 @@
 [
-    {
-        "id": "sch1",
-        "talk_id": "talk1",
-        "day": "2026-10-12",
-        "start_time": "09:00",
-        "end_time": "09:45",
-        "room": "Hall A"
-    },
-    {
-        "id": "sch2",
-        "talk_id": "talk2",
-        "day": "2026-10-12",
-        "start_time": "10:00",
-        "end_time": "11:00",
-        "room": "Hall B"
-    }
+  {
+    "id": "sch1",
+    "talk_id": "visit1",
+    "day": "2026-09-16",
+    "start_time": "13:00",
+    "end_time": "17:00",
+    "room": "Liverpool John Moores University – Stafford Beer Archive Collection"
+},
+{
+    "id": "sch2",
+    "talk_id": "conf_day1",
+    "day": "2026-09-17",
+    "start_time": "09:00",
+    "end_time": "17:00",
+    "room": "Conference Venue"
+},
+{
+    "id": "sch3",
+    "talk_id": "conf_day2",
+    "day": "2026-09-18",
+    "start_time": "09:00",
+    "end_time": "17:00",
+    "room": "Conference Venue"
+},
+{
+    "id": "sch4",
+    "talk_id": "gala_dinner",
+    "day": "2026-09-18",
+    "start_time": "19:00",
+    "end_time": "23:00",
+    "room": "Gala Dinner Venue"
+},
+{
+    "id": "sch5",
+    "talk_id": "conf_day3",
+    "day": "2026-09-19",
+    "start_time": "09:00",
+    "end_time": "16:00",
+    "room": "Conference Venue"
+}
 ]
