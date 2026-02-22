@@ -97,10 +97,11 @@ Metaphorum 2026 invites the global cyber-systemic community to reflect, reconnec
 .hero-image {
     position: absolute;
     inset: 0;
-    background-image: url('/mainPicture.png');
-    background-size: cover;
-    background-position: top center;
+    background-image: url('/mainPicture.png'); /* remove /public */
+    background-size: contain;
+    background-position: center;
     background-repeat: no-repeat;
+    background-color: black; /* fills empty space */
     z-index: 0;
 }
 
