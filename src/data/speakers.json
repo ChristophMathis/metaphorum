@@ -1,27 +1,65 @@
 [
-    {
-        "id": "s1",
-        "full_name": "Dr. Alice Smith",
-        "affiliation": "University of Medicine",
-        "bio": "Expert in Epidemiology with over 20 years of experience.",
-        "photo_url": "https://i.pravatar.cc/300?u=s1",
-        "email": "alice@example.com"
-    },
-    {
-        "id": "s2",
-        "full_name": "Prof. Bob Jones",
-        "affiliation": "Global Health Institute",
-        "bio": "Leading researcher in tropical diseases.",
-        "photo_url": "https://i.pravatar.cc/300?u=s6",
-        "email": "bob@example.com"
-    },
-
-      {
-        "id": "s3",
-        "full_name": "Prof. John Walson",
-        "affiliation": "Manchester University",
-        "bio": "Leading researcher in Cybernetics.",
-        "photo_url": "https://i.pravatar.cc/300?u=s4",
-        "email": "john@example.com"
-    }
+   {
+    "id": "s1",
+    "full_name": "Juliana Mariano Alves",
+    "affiliation": "Universidade Estadual do Tocantins",
+    "bio": "Professor at Universidade Estadual do Tocantins, where she leads the Research Group on Development and Environmental Performance. She holds a Bachelor’s degree in Environmental Engineering, a Master’s degree in Agroecosystems, and a Ph.D. in Regional Development. She has been a Visiting Researcher at the Institute of Management and Strategy, University of St. Gallen, Switzerland. She has provided consultancy to the Ministry of the Environment of Brazil and the Inter-American Institute for Cooperation on Agriculture. She is a board member of the State Council for Water Resources in Brazil, Ambassador of the Climate Solutions Simulator of MIT, and board member of Metaphorum and the American Society for Cybernetics. Her work focuses on applying the Viable System Model (VSM) to complex adaptive systems, particularly in water governance.",
+    "photo_url": "https://unitins.br/english/"
+},
+{
+    "id": "s2",
+    "full_name": "Steve Brewis",
+    "affiliation": "The Infinite Game",
+    "bio": "CEO of The Infinite Game and systems thinker with a background in telecommunications, control systems engineering, and organizational design. Former Chief Research Scientist at BT and Project Supervisor at the University of Cambridge and the University of Oxford. Senior Researcher at Khalifa University and Lecturer at the University of Northumbria. Developer of the Ibex Identity Model and frameworks integrating surprise metabolism, recursive closure, and cybernetic stewardship. Chartered Engineer (CEng) and Honorary Fellow of The Cybernetics Society.",
+    "photo_url": "https://avatars.sched.co/c/3b/22528164/avatar.jpg?8ab"
+},
+{
+    "id": "s3",
+    "full_name": "Pedro Pablo Cardoso",
+    "affiliation": "University of Exeter / De Montfort University",
+    "bio": "Honorary Senior Lecturer at the University of Exeter and Programme Director at De Montfort University (Cambodia). Consultant and researcher in complexity in management, with previous roles at Leeds Beckett University and Cranfield University. His work focuses on complexity management in strategy, security, sustainability, innovation, and management systems inspired by co-evolving and transition management principles. He has led projects across the UK, Europe, Latin America, and Cambodia.",
+    "photo_url": "https://avatars.sched.co/9/29/23097700/avatar.jpg?43d"
+},
+{
+    "id": "s4",
+    "full_name": "Iffat Sabir Chaudhry",
+    "affiliation": "Al Ain University, United Arab Emirates",
+    "bio": "Associate Professor of Management and Deputy Dean of the College of Business at Al Ain University, UAE. She holds a PhD in Management from the University of Hull, UK. With over a decade of experience in the UAE and Oman, her work focuses on sustainability, leadership, entrepreneurship, and workforce psychology. She contributes to UN-PRME Youth Talks and the PRME Mentorship Program, aligning her teaching with the Sustainable Development Goals (SDGs).",
+    "photo_url": "https://avatars.sched.co/2/c7/22961701/avatar.jpg?86e"
+},
+{
+    "id": "s5",
+    "full_name": "Angela Espinosa",
+    "affiliation": "Metaphorum",
+    "bio": "Director of Metaphorum and organizational cybernetics scholar. She earned her PhD in organizational cybernetics in 1995 and worked closely with Stafford Beer. Former Reader in Cybernetics at Hull University Business School and currently an Emeritus Fellow. Honorary Research Fellow at Exeter University and Transylvania Executive Education. Recipient of the Ashby Lecture (2002) and Norbert Wiener Award (2006). Author of books including 'A Complexity Approach to Sustainability' and 'Sustainable Self-governance in Businesses and Societies: The Viable System Model in Action'.",
+    "photo_url": "https://angelaespinosa.com"
+},
+{
+    "id": "s6",
+    "full_name": "Jon Walker",
+    "affiliation": "Metaphorum",
+    "bio": "Director at Metaphorum with over forty years of experience in the cooperative business sector. He has established and co-managed multiple businesses and pioneered the use of the Viable System Model in cooperatives and eco-communities. Co-author of 'A Complexity Approach to Sustainability' with Angela Espinosa. He works with the Transition Network, the Permaculture Association, and the Cooperative Group, and consults internationally on complexity and cybernetics.",
+    "photo_url": "https://avatars.sched.co/5/b4/12283292/avatar.jpg?670"
+},
+{
+    "id": "s7",
+    "full_name": "Ayham Fattoum",
+    "affiliation": "University of Manchester",
+    "bio": "Lecturer in Management Studies and Operational Disaster Management at the University of Manchester. He holds a PhD in Business and Management (Operations Management) from Alliance Manchester Business School and an MSc from the University of Warwick. His research focuses on enhancing resilience, agility, and viability of systems during emergencies, particularly managing spontaneous volunteers in disasters, using VSM, SSM, and systems thinking methodologies.",
+    "photo_url": "https://avatars.sched.co/4/83/22528153/avatar.jpg?8f8"
+},
+{
+    "id": "s8",
+    "full_name": "Allenna Leonard",
+    "affiliation": "Cwarel Isaf Institute",
+    "bio": "Principal at Cwarel Isaf Institute and independent consultant based in Toronto. She worked with Stafford Beer from the early 1980s until his death in 2002. Former President of Metaphorum, the American Society for Cybernetics, and the International Society for Systems Science. She applies cybernetic approaches including the Viable System Model, Team Syntegrity, and Operations Room design in nonprofit and business organizations.",
+    "photo_url": "https://avatars.sched.co/9/19/2137512/avatar.jpg?d5a"
+},
+{
+    "id": "s9",
+    "full_name": "Jose Manuel Perez Rios",
+    "affiliation": "University of Valladolid, Spain",
+    "bio": "Professor at the University of Valladolid specializing in system dynamics and organizational cybernetics. Creator of the VSMod® software supporting the Viable System Model. Former Director of International Relations at the University of Valladolid (2000–2006). Author of over 80 publications and five books, including 'Design and Diagnosis for Sustainable Organizations: The Viable System Method'. Recipient of the Kybernetes Research Award (2006) and Honorary HSSS Award as Distinguished Scientist (2007). Board member of the World Organization of Systems and Cybernetics and Fellow of HSSS.",
+    "photo_url": "https://avatars.sched.co/7/2a/23091852/avatar.jpg?63a"
+}
 ]
