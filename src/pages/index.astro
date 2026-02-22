@@ -6,6 +6,11 @@ const { conference } = config;
 ---
 
 <Layout title="Home">
+
+<section class="hero">
+    <div class="hero-image"></div>
+</section>
+
 	<section class="hero">
         <div class="container hero-content">
             <h1>100 Years of Stafford Beer</h1>
@@ -77,9 +82,19 @@ Metaphorum 2026 invites the global cyber-systemic community to reflect, reconnec
     .hero {
         background-color: var(--color-primary);
         color: white;
-        padding: 5rem 0;
+        padding: 2rem 0;
         text-align: center;
     }
+
+    .hero-image {
+    position: absolute;
+    inset: 0;
+    background-image: url('/public/mainPicture.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
 
     .hero h1 {
         color: white;
