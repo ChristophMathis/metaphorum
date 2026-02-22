@@ -7,7 +7,7 @@ const { conference } = config;
 
 <Layout title="Home">
 
-<section class="hero">
+<section class="hero-pic">
     <div class="hero-image"></div>
 </section>
 
@@ -85,7 +85,15 @@ Metaphorum 2026 invites the global cyber-systemic community to reflect, reconnec
         padding: 2rem 0;
         text-align: center;
     }
-
+.hero-pic {
+    position: relative;
+    height: 80vh; /* adjust as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+}
     .hero-image {
     position: absolute;
     inset: 0;
