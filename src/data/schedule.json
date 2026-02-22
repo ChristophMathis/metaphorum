@@ -5,7 +5,10 @@
     "day": "2026-09-16",
     "start_time": "13:00",
     "end_time": "17:00",
-    "room": "Liverpool John Moores University – Stafford Beer Archive Collection (optional. More details to be provided soon)"
+    "room": "Liverpool John Moores University – Stafford Beer Archive Collection (optional. More details to be provided soon)",
+        "track": {
+        "name": "Optional Session"
+    }
 },
 {
     "id": "sch2",
