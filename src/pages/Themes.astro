@@ -14,78 +14,197 @@ const { links } = config;
 
     <section class="content">
         <div class="container">
-            <div class="two-col">
-                <div class="main-info">
-                    <h2>Submission Guidelines</h2>
-                    <p>We invite researchers and practitioners to submit abstracts for consideration in the MPH 2026 program. Submissions should present original research or compelling case studies relevant to the conference tracks.</p>
 
-                    <h3>Conference Themes</h3>
-                    <ul>
-                        <li>Stafford Beer: a Genuinely Holistic Character</li>
-                        <li>Constitutive Principles, Emerging Methods and Tools, and Contemporary Practice</li>
-                        <li>Beyond Beer: Toward Resilient, Just, and Ethical Viable Systems</li>
-                        <li>Beyond Beer: Living or Grounded Cybernetics</li>
-                        <li>The World in Torment: A Time Whose Ideas Must Come</li>
+            <h2>Submission Guidelines</h2>
+            <p>
+                We invite researchers and practitioners to submit abstracts for consideration 
+                in the Metaphorum 2026 program. Submissions should present original research, 
+                theoretical reflections, methodological innovations, or compelling case studies 
+                relevant to the conference streams below.
+            </p>
 
-                    </ul>
+            <div class="accordion">
 
-                    <h3>Submission Process</h3>
-                    <ol>
-                        <li>Prepare your abstract (max 250 words).</li>
-                        <li>Ensure you have speaker bios ready.</li>
-                        <li>Email your submission to <a href={`mailto:${links.abstracts_email}`}>{links.abstracts_email}</a> with the subject line "Abstract Submission - [Your Name]".</li>
-                    </ol>
-                </div>
-                
-                <div class="sidebar">
-                    <div class="dates-box">
-                        <h3>Important Deadlines</h3>
-                        <ul>
-                            <li><strong>Submission Opens:</strong> February 2026</li>
-                            <li><strong>Submission Closes:</strong> May 30th, 2026</li>
-                            <li><strong>Notification of Acceptance:</strong> July 15, 2026</li>
-                        </ul>
+                <!-- STREAM 1 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">1. Stafford Beer: a Genuinely Holistic Character</button>
+                    <div class="accordion-content">
+                        <p>
+                        Stafford Beer was not only a pioneering theorist, but also a mentor, artist, 
+                        and humanist committed to designing systems that serve human dignity and planetary wellbeing...
+                        </p>
+                        <p>
+                        This stream invites personal reflections and creative contributions that explore Beer in his 
+                        wholeness and illuminate how he contributed to changing your way of thinking about organisations and societies.
+                        </p>
                     </div>
                 </div>
+
+                <!-- STREAM 2 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">2. Constitutive Principles, Emerging Methods and Tools, and Contemporary Practice</button>
+                    <div class="accordion-content">
+                        <p>
+                        At the heart of organisational cybernetics lie the Viable System Model and Team Syntegrity...
+                        </p>
+
+                        <ul>
+                            <li>What are the constitutive principles of organisational viability?</li>
+                            <li>What are emerging and proven methodologies and tools?</li>
+                            <li>What forms of learning have emerged through practical application?</li>
+                            <li>What are the main challenges for further development?</li>
+                        </ul>
+
+                        <p>
+                        We invite theoretical and methodological innovations, case studies, and critical reflections.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- STREAM 3 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">3. Beyond Beer: Toward Resilient, Just, and Ethical Viable Systems</button>
+                    <div class="accordion-content">
+                        <p>
+                        As humanity faces climate disruption, biodiversity loss, rising inequality, 
+                        and political unrest, the need for resilience, justice, and sustainability 
+                        has never been more urgent.
+                        </p>
+                        <p>
+                        This stream invites contributions that extend or reinterpret cybernetic 
+                        principles to address emerging socio-ecological challenges.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- STREAM 4 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">4. Beyond Beer: Living or Grounded Cybernetics</button>
+                    <div class="accordion-content">
+                        <p>
+                        Inspired by Metaphorum’s idea of ‘Barefoot Cybernetics’, this stream 
+                        views organisational cybernetics as an emancipatory approach.
+                        </p>
+                        <p>
+                        We welcome interdisciplinary perspectives, empirical contributions, 
+                        and action-oriented frameworks that advance structural transformation.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- STREAM 5 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">5. The World in Torment: A Time Whose Ideas Must Come</button>
+                    <div class="accordion-content">
+                        <p>
+                        In January 1993, Stafford Beer delivered his Presidential Address 
+                        titled “The World in Torment: A Time Whose Ideas Must Come”.
+                        </p>
+                        <p>
+                        This panel explores current global systemic failures, institutional 
+                        obsolescence, and complexity challenges in governance.
+                        </p>
+                        <p>
+                        Since 1993, digital networks and artificial intelligence have reshaped 
+                        global systems — raising new questions of control, responsibility, and systemic design.
+                        </p>
+                    </div>
+                </div>
+
             </div>
+
+            <!-- ALWAYS VISIBLE SECTION -->
+            <div class="methodology">
+                <h2>Methodological Approach: A Living Conversation</h2>
+                <p>
+                These streams form a single, integrated conversation. Personal reflections illuminate 
+                the ethical foundations of the field; practice tests and refines its principles; and 
+                future-oriented inquiry ensures continued relevance.
+                </p>
+                <p>
+                We welcome creative workshops, interdisciplinary panels, posters, traditional papers, 
+                and other facilitated group dynamics.
+                </p>
+                <p>
+                Those interested in publishing may participate in a special issue of:
+                <br />
+                <strong>Systemic Practice and Action Research</strong> and/or 
+                <strong>Systems Research and Behavioural Science</strong> and/or 
+                <strong>A New Metaphorum Online Journal (Organisational Systems)</strong>
+                </p>
+
+                <p class="deadline">
+                    <strong>Deadline for submitting abstracts:</strong> May 30th, 2026
+                </p>
+
+                <p>
+                    Email submissions to 
+                    <a href={`mailto:${links.abstracts_email}`}>
+                        {links.abstracts_email}
+                    </a>
+                </p>
+            </div>
+
         </div>
     </section>
 </Layout>
 
+<script>
+    document.querySelectorAll('.accordion-header').forEach(button => {
+        button.addEventListener('click', () => {
+            const content = button.nextElementSibling;
+            content.classList.toggle('open');
+        });
+    });
+</script>
+
 <style>
-    .page-header {
-        background: var(--color-primary);
-        color: white;
-        padding: 3rem 0;
-    }
+.page-header {
+    background: var(--color-primary);
+    color: white;
+    padding: 3rem 0;
+}
 
-    .two-col {
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 3rem;
-    }
+.accordion-item {
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
 
-    @media (max-width: 768px) {
-        .two-col {
-            grid-template-columns: 1fr;
-        }
-    }
+.accordion-header {
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background: var(--color-background-alt);
+    border: none;
+    cursor: pointer;
+}
 
-    .dates-box {
-        background: var(--color-background-alt);
-        padding: 1.5rem;
-        border-radius: 8px;
-        border-left: 4px solid var(--color-accent);
-    }
-    
-    .dates-box ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 1rem;
+}
 
-    .dates-box li {
-        margin-bottom: 0.75rem;
-        font-size: 0.95rem;
-    }
+.accordion-content.open {
+    max-height: 1000px;
+    padding: 1rem;
+}
+
+.methodology {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--color-background-alt);
+    border-radius: 8px;
+}
+
+.deadline {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--color-accent);
+}
 </style>
