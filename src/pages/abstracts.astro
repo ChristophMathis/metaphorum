@@ -33,7 +33,48 @@ const { links } = config;
 
                     <h3>Submission Process</h3>
                     <ol>
-                        <li>Prepare your abstract (max 250 words).</li>
+                        <li>
+                            Prepare your abstract (max 250 words).
+                            <details class="guidelines-details">
+                                <summary>Abstract Submission Guidelines (Click to Expand)</summary>
+                                <div class="guidelines-content">
+                                    <p>Authors are invited to submit abstracts that align with the conference themes and contribute to meaningful scholarly and professional discussion.</p>
+                                    
+                                    <h4>Abstract Requirements</h4>
+                                    <p>Abstracts must include the following elements:</p>
+                                    <ul class="nested-list">
+                                        <li><strong>Author(s) Information:</strong> Full name, Affiliation, Email address of author(s)</li>
+                                        <li><strong>Title:</strong> Clear and concise title of the abstract</li>
+                                        <li><strong>Purpose:</strong> Background, aim, or objective of the study/project</li>
+                                        <li><strong>Methods:</strong> Brief description of the methodology, approach, or process used</li>
+                                        <li><strong>Findings:</strong> Key findings, outcomes, or expected results (where applicable)</li>
+                                        <li><strong>Implications/Contributions:</strong> Significance, practical implications, or contribution to knowledge/practice</li>
+                                        <li><strong>Keywords:</strong> 5-7 keywords</li>
+                                    </ul>
+
+                                    <h4>Formatting Requirements</h4>
+                                    <ul class="nested-list">
+                                        <li><strong>Maximum 250 words</strong> (excluding title, author information, and keywords)</li>
+                                        <li><strong>Language:</strong> Clear, professional English</li>
+                                        <li><strong>Font:</strong> Times New Roman, 12 pt</li>
+                                        <li><strong>Spacing:</strong> 1.5 line spacing</li>
+                                        <li>Use professional, respectful, and academically appropriate language.</li>
+                                    </ul>
+
+                                    <h4>Evaluation Criteria</h4>
+                                    <p>Submitted abstracts will be reviewed based on:</p>
+                                    <ul class="nested-list">
+                                        <li>Relevance to the conference themes</li>
+                                        <li>Clarity, coherence, and quality of content</li>
+                                        <li>Suitability for discussion and engagement at the conference</li>
+                                        <li>Professional and respectful language</li>
+                                        <li>Clear presentation of topic, methodology, findings, and contributions</li>
+                                        <li>Avoid promotional, commercial, or inappropriate language</li>
+                                        <li>Be original work and avoid plagiarism or copyrighted material without proper permission.</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </li>
                         <li>Ensure you have speaker bios ready.</li>
                         <li>Email your submission to <a href={`mailto:${links.abstracts_email}`}>{links.abstracts_email}</a> with the subject line "Abstract Submission - [Your Name] - [Conference Theme]".</li>
                     </ol>
@@ -100,5 +141,67 @@ const { links } = config;
 
 .main-info li {
     margin-bottom: 0.6rem;
+}
+
+.guidelines-details {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    background: var(--color-background-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 0.5rem;
+}
+
+.guidelines-details summary {
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--color-primary);
+    list-style: none; /* Hide default arrow in some browsers */
+    display: flex;
+    align-items: center;
+}
+
+.guidelines-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.guidelines-details summary::before {
+    content: "▶";
+    font-size: 0.8em;
+    margin-right: 0.5rem;
+    transition: transform 0.2s;
+}
+
+.guidelines-details[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.guidelines-content {
+    margin-top: 1rem;
+    padding: 0 1rem 1rem 1rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.guidelines-content h4 {
+    color: var(--color-accent);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.guidelines-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+ul.nested-list {
+    list-style: disc !important;
+    padding-left: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+ul.nested-list li {
+    margin-bottom: 0.4rem !important;
 }
 </style>
