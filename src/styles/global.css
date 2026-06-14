@@ -46,6 +46,7 @@ h3 { font-size: 1.5rem; }
    (nav, cards, etc.) override these via higher-specificity scoped styles. */
 p {
   margin-bottom: 1rem;
+  max-width: 70ch; /* comfortable reading measure on wide screens */
 }
 
 p:last-child {
