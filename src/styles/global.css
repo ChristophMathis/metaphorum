@@ -40,6 +40,35 @@ h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; margin-top: 1em; }
 h3 { font-size: 1.5rem; }
 
+/* Base typography — vertical rhythm for body text & lists.
+   The `*` reset above zeroes all margins/padding, so we re-establish
+   sensible defaults here. Components that style their own lists
+   (nav, cards, etc.) override these via higher-specificity scoped styles. */
+p {
+  margin-bottom: 1rem;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul,
+ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem; /* restores indent so markers are visible */
+}
+
+ul { list-style: disc; }
+ol { list-style: decimal; }
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
 a {
   color: var(--color-secondary);
   text-decoration: none;
