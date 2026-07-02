@@ -18,6 +18,12 @@ pnpm-debug.log*
 .env.*
 !.env.example
 
+# EmDash CMS (local database, media uploads, generated files)
+data.db
+data.db-*
+uploads/
+.emdash/
+
 # macOS
 .DS_Store
 

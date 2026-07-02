@@ -1,21 +1,28 @@
 ---
+import { Image } from 'emdash/ui';
+import type { ImageValue } from 'emdash';
+
 interface Props {
   id: string;
   name: string;
-  affiliation: string;
-  photoUrl: string;
+  subtitle?: string;
+  image?: ImageValue;
 }
 
-const { id, name, affiliation, photoUrl } = Astro.props;
+const { id, name, subtitle, image } = Astro.props;
 ---
 
 <a href={`/speakers/${id}`} class="speaker-card">
   <div class="photo-wrapper">
-    <img src={photoUrl || 'https://placehold.co/300x300?text=No+Photo'} alt={name} loading="lazy" />
+    {image ? (
+      <Image image={image} alt={name} />
+    ) : (
+      <img src="https://placehold.co/300x300?text=No+Photo" alt={name} loading="lazy" />
+    )}
   </div>
   <div class="info">
     <h3>{name}</h3>
-    <p class="affiliation">{affiliation}</p>
+    {subtitle && <p class="affiliation">{subtitle}</p>}
   </div>
 </a>
 
@@ -45,7 +52,7 @@ const { id, name, affiliation, photoUrl } = Astro.props;
     background: #f0f0f0;
   }
 
-  .photo-wrapper img {
+  .photo-wrapper :global(img) {
     position: absolute;
     top: 0;
     left: 0;

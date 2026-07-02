@@ -1,0 +1,123 @@
+---
+import { getEmDashCollection } from 'emdash';
+import Layout from '../../layouts/Layout.astro';
+import { buildEntryLookup, formatDay, referenceIds } from '../../lib/conference';
+
+const [{ entries: sessions, cacheHint }, { entries: tracks }] = await Promise.all([
+	getEmDashCollection('sessions', { status: 'published' }),
+	getEmDashCollection('tracks', { status: 'published' }),
+]);
+Astro.cache.set(cacheHint);
+
+const tracksById = buildEntryLookup(tracks);
+
+// For each day (sorted), the tracks that have sessions on that day
+const days = [...new Set(sessions.map(s => s.data.day).filter(Boolean))].sort();
+const tracksPerDay = days.map(day => {
+	const trackSlugs = new Set(
+		sessions
+			.filter(s => s.data.day === day)
+			.flatMap(s => referenceIds(s.data.track))
+			.map(ref => tracksById.get(ref)?.id)
+			.filter(Boolean)
+	);
+	const dayTracks = tracks
+		.filter(t => trackSlugs.has(t.id))
+		.toSorted((a, b) => a.data.title.localeCompare(b.data.title));
+	return { day, tracks: dayTracks };
+});
+---
+
+<Layout title="Schedule (Detailed)">
+	<section class="page-header">
+        <div class="container">
+            <h1>Schedule (Detailed)</h1>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container">
+            {tracksPerDay.length === 0 ? (
+                <p class="empty-note">No sessions have been published yet. Add sessions in the <a href="/_emdash/admin">admin panel</a>.</p>
+            ) : (
+                tracksPerDay.map(({ day, tracks: dayTracks }) => (
+                    <div class="schedule-day">
+                        <h2 class="day-header">{formatDay(day)}</h2>
+                        {dayTracks.length === 0 ? (
+                            <p class="empty-note">No track sessions on this day.</p>
+                        ) : (
+                            <div class="track-grid">
+                                {dayTracks.map(track => (
+                                    <a class="track-card" href={`/schedule/${day}/${track.id}`}>
+                                        <h3>{track.data.title}</h3>
+                                        {track.data.room && <p class="track-room">{track.data.room}</p>}
+                                    </a>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                ))
+            )}
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .page-header {
+        background: var(--color-primary);
+        color: white;
+        padding: 3rem 0;
+    }
+
+    .content {
+        padding: 2rem 0 4rem;
+    }
+
+    .schedule-day {
+        margin-bottom: 3rem;
+    }
+
+    .day-header {
+        border-bottom: 2px solid var(--color-secondary);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .track-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .track-card {
+        display: block;
+        background: white;
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        transition: transform 0.2s, box-shadow 0.2s;
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .track-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        text-decoration: none;
+    }
+
+    .track-card h3 {
+        font-size: 1.2rem;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .track-room {
+        color: var(--color-text-light);
+        font-size: 0.95rem;
+    }
+
+    .empty-note {
+        color: var(--color-text-light);
+    }
+</style>

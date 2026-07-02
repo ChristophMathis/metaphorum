@@ -2,18 +2,30 @@
   "name": "mph-2026",
   "type": "module",
   "version": "0.0.1",
+  "emdash": {
+    "label": "MPH Conference",
+    "seed": "seed/seed.json"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "start": "node ./dist/server/entry.mjs",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.16.8"
+    "@astrojs/node": "^11.0.0",
+    "@astrojs/react": "^6.0.0",
+    "astro": "^7.0.0",
+    "better-sqlite3": "^12.8.0",
+    "emdash": "^0.27.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
   },
   "allowScripts": {
-    "esbuild@0.25.12": true,
+    "esbuild@0.28.1": true,
     "fsevents@2.3.3": true,
-    "sharp@0.34.5": true
+    "sharp@0.34.5": true,
+    "better-sqlite3@12.11.1": true
   }
 }

@@ -1,0 +1,144 @@
+---
+import { getEmDashCollection, getEmDashEntry } from 'emdash';
+import { Image, PortableText } from 'emdash/ui';
+import Layout from '../../layouts/Layout.astro';
+import {
+  buildEntryLookup,
+  formatDay,
+  formatTime,
+  referenceIds,
+} from '../../lib/conference';
+
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect('/404');
+
+const { entry: session, cacheHint } = await getEmDashEntry('sessions', slug);
+if (!session) return Astro.redirect('/404');
+Astro.cache.set(cacheHint);
+
+// Resolve the optional track reference
+const trackRef = referenceIds(session.data.track)[0];
+let track;
+if (trackRef) {
+  const { entries: tracks } = await getEmDashCollection('tracks', { status: 'published' });
+  track = buildEntryLookup(tracks).get(trackRef);
+}
+
+// Speakers holding a reference to this session
+const { entries: allSpeakers } = await getEmDashCollection('speakers', {
+  status: 'published',
+});
+const sessionSpeakers = allSpeakers.filter(speaker => {
+  const refs = referenceIds(speaker.data.sessions);
+  return refs.includes(session.data.id) || refs.includes(session.id);
+});
+---
+
+<Layout title={session.data.title}>
+  <div class="container session-container">
+    <div class="back-link">
+        <a href="/schedule/detailed">&larr; Back to detailed schedule</a>
+    </div>
+
+    <article>
+        <h1 {...session.edit.title}>{session.data.title}</h1>
+
+        <div class="session-meta">
+            {session.data.day && (
+                <span class="meta-item">{formatDay(session.data.day)}</span>
+            )}
+            {session.data.starttime && (
+                <span class="meta-item">{formatTime(session.data.starttime)}</span>
+            )}
+            {session.data.duration && (
+                <span class="meta-item">{session.data.duration} min</span>
+            )}
+            {track && session.data.day && (
+                <a class="track-tag" href={`/schedule/${session.data.day}/${track.id}`}>
+                    {track.data.title}{track.data.room ? ` · ${track.data.room}` : ''}
+                </a>
+            )}
+        </div>
+
+        {sessionSpeakers.length > 0 && (
+            <p class="session-speakers">
+                {sessionSpeakers.map((speaker, i) => (
+                    <>
+                        {i > 0 && ', '}
+                        <a href={`/speakers/${speaker.id}`}>{speaker.data.name}</a>
+                    </>
+                ))}
+            </p>
+        )}
+
+        {session.data.image && (
+            <div class="session-image" {...session.edit.image}>
+                <Image image={session.data.image} alt={session.data.image.alt || session.data.title} />
+            </div>
+        )}
+
+        {session.data.abstract && (
+            <div class="session-abstract" {...session.edit.abstract}>
+                <h2>Abstract</h2>
+                <PortableText value={session.data.abstract} />
+            </div>
+        )}
+    </article>
+  </div>
+</Layout>
+
+<style>
+    .session-container {
+        padding-top: 2rem;
+        padding-bottom: 4rem;
+        max-width: 900px;
+    }
+
+    .back-link {
+        margin-bottom: 2rem;
+    }
+
+    .session-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: center;
+        margin-bottom: 1rem;
+        color: var(--color-text-light);
+        font-weight: 500;
+    }
+
+    .meta-item:not(:last-child)::after {
+        content: '·';
+        margin-left: 0.75rem;
+        color: var(--color-border);
+    }
+
+    .track-tag {
+        background: var(--color-background-alt);
+        border: 1px solid var(--color-border);
+        border-radius: 4px;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .session-speakers {
+        font-size: 1.15rem;
+        margin-bottom: 2rem;
+    }
+
+    .session-image {
+        margin-bottom: 2rem;
+    }
+
+    .session-image :global(img) {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .session-abstract {
+        max-width: 800px;
+    }
+</style>
