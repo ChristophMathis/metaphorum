@@ -1,0 +1,186 @@
+---
+import { getEmDashCollection, getEmDashEntry } from 'emdash';
+import { PortableText } from 'emdash/ui';
+import Layout from '../../../layouts/Layout.astro';
+import {
+  formatDay,
+  formatTime,
+  portableTextToPlainText,
+  referenceIds,
+} from '../../../lib/conference';
+
+const { day, track: trackSlug } = Astro.params;
+if (!day || !trackSlug) return Astro.redirect('/404');
+
+const { entry: track, cacheHint } = await getEmDashEntry('tracks', trackSlug);
+if (!track) return Astro.redirect('/404');
+Astro.cache.set(cacheHint);
+
+const [{ entries: allSessions }, { entries: allSpeakers }] = await Promise.all([
+  getEmDashCollection('sessions', { status: 'published' }),
+  getEmDashCollection('speakers', { status: 'published' }),
+]);
+
+// Sessions of this track on this day, sorted by start time
+const sessions = allSessions
+  .filter(s => {
+    if (s.data.day !== day) return false;
+    const refs = referenceIds(s.data.track);
+    return refs.includes(track.data.id) || refs.includes(track.id);
+  })
+  .toSorted((a, b) => (a.data.starttime || '').localeCompare(b.data.starttime || ''));
+
+// Speaker(s) per session via the speakers' session references
+function speakersOf(session: (typeof sessions)[number]) {
+  return allSpeakers.filter(speaker => {
+    const refs = referenceIds(speaker.data.sessions);
+    return refs.includes(session.data.id) || refs.includes(session.id);
+  });
+}
+---
+
+<Layout title={`${track.data.title} – ${formatDay(day)}`}>
+	<section class="page-header">
+        <div class="container">
+            <h1>{track.data.title}</h1>
+            <p class="header-meta">
+                {formatDay(day)}{track.data.room ? ` · ${track.data.room}` : ''}
+            </p>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container">
+            <div class="back-link">
+                <a href="/schedule/detailed">&larr; Back to detailed schedule</a>
+            </div>
+
+            {track.data.description && (
+                <div class="track-description">
+                    <PortableText value={track.data.description} />
+                </div>
+            )}
+
+            {sessions.length === 0 ? (
+                <p class="empty-note">No sessions in this track on this day.</p>
+            ) : (
+                <div class="timeline">
+                    {sessions.map(session => (
+                        <div class="schedule-item">
+                            <div class="time-col">
+                                {session.data.starttime && (
+                                    <span class="start-time">{formatTime(session.data.starttime)}</span>
+                                )}
+                                {session.data.duration && (
+                                    <span class="duration">{session.data.duration} min</span>
+                                )}
+                            </div>
+                            <div class="details-col">
+                                <h3 class="talk-title">
+                                    <a href={`/sessions/${session.id}`}>{session.data.title}</a>
+                                </h3>
+                                {speakersOf(session).length > 0 && (
+                                    <p class="talk-speaker">
+                                        {speakersOf(session).map((speaker, i) => (
+                                            <>
+                                                {i > 0 && ', '}
+                                                <a href={`/speakers/${speaker.id}`}>{speaker.data.name}</a>
+                                            </>
+                                        ))}
+                                    </p>
+                                )}
+                                <p class="talk-abstract">{portableTextToPlainText(session.data.abstract)}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .page-header {
+        background: var(--color-primary);
+        color: white;
+        padding: 3rem 0;
+    }
+
+    .header-meta {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 1.15rem;
+        margin: 0;
+    }
+
+    .content {
+        padding: 2rem 0 4rem;
+    }
+
+    .back-link {
+        margin-bottom: 2rem;
+    }
+
+    .track-description {
+        max-width: 800px;
+        margin-bottom: 2.5rem;
+        color: var(--color-text-light);
+    }
+
+    .schedule-item {
+        display: flex;
+        gap: 2rem;
+        background: var(--color-background-alt);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .time-col {
+        display: flex;
+        flex-direction: column;
+        min-width: 90px;
+        text-align: right;
+        flex-shrink: 0;
+    }
+
+    .start-time {
+        font-weight: 600;
+        color: var(--color-primary);
+    }
+
+    .duration {
+        color: var(--color-text-light);
+        font-size: 0.9rem;
+    }
+
+    .talk-title {
+        font-size: 1.2rem;
+        margin: 0 0 0.25rem 0;
+    }
+
+    .talk-speaker {
+        color: var(--color-text-light);
+        margin-bottom: 0.5rem;
+    }
+
+    .talk-abstract {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+        .schedule-item {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .time-col {
+            flex-direction: row;
+            gap: 0.75rem;
+            text-align: left;
+        }
+    }
+</style>

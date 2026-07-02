@@ -1,10 +1,17 @@
 ---
+import { getEmDashCollection } from 'emdash';
 import Layout from '../../layouts/Layout.astro';
 import SpeakerCard from '../../components/SpeakerCard.astro';
-import speakers from '../../data/speakers.json';
 
-// Sort speakers alphabetically by name
-const sortedSpeakers = [...speakers].sort((a, b) => a.full_name.localeCompare(b.full_name));
+const { entries: speakers, cacheHint } = await getEmDashCollection('speakers', {
+	status: 'published',
+});
+Astro.cache.set(cacheHint);
+
+// Sort speakers alphabetically by sort name (e.g. "Espinosa, Angela")
+const sortedSpeakers = speakers.toSorted((a, b) =>
+	(a.data.sort_name || a.data.name).localeCompare(b.data.sort_name || b.data.name)
+);
 ---
 
 <Layout title="Speakers">
@@ -16,16 +23,20 @@ const sortedSpeakers = [...speakers].sort((a, b) => a.full_name.localeCompare(b.
 
     <section class="content">
         <div class="container">
-            <div class="speakers-grid">
-                {sortedSpeakers.map(speaker => (
-                    <SpeakerCard 
-                        id={speaker.id}
-                        name={speaker.full_name}
-                        affiliation={speaker.affiliation}
-                        photoUrl={speaker.photo_url}
-                    />
-                ))}
-            </div>
+            {sortedSpeakers.length === 0 ? (
+                <p class="empty-note">No speakers have been published yet. Add speakers in the <a href="/_emdash/admin">admin panel</a>.</p>
+            ) : (
+                <div class="speakers-grid">
+                    {sortedSpeakers.map(speaker => (
+                        <SpeakerCard
+                            id={speaker.id}
+                            name={speaker.data.name}
+                            subtitle={speaker.data.abstract}
+                            image={speaker.data.image}
+                        />
+                    ))}
+                </div>
+            )}
         </div>
     </section>
 </Layout>
@@ -42,5 +53,10 @@ const sortedSpeakers = [...speakers].sort((a, b) => a.full_name.localeCompare(b.
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 2rem;
         margin-top: 2rem;
+    }
+
+    .empty-note {
+        margin-top: 2rem;
+        color: var(--color-text-light);
     }
 </style>

@@ -1,10 +1,27 @@
 # MPH Conference Website - Data Management Guide
 
-This website is designed to be static and data-driven. **No coding is required to update the content** for speakers, schedule, or basic site information.
+This website is data-driven. **No coding is required to update the content** for speakers, schedule, or basic site information.
 
-## How to Update Data
+## Speakers, Sessions & Tracks (EmDash CMS)
 
-All data is located in the `src/data/` folder.
+Speakers, sessions and tracks are now managed in the **EmDash CMS admin panel**, not in JSON files:
+
+1. Open `/_emdash/admin` on the running site (there is also a **Login** link in the site footer).
+2. Edit content under **Speakers**, **Sessions** and **Tracks**.
+
+These collections drive the `/speakers` pages, the session pages, and the `/schedule/detailed` pages. The schema and initial content live in `seed/seed.json`, which is applied automatically on the first run against an empty database.
+
+For local development:
+
+```bash
+npm install
+npx emdash secrets generate --write .env   # once
+npm run dev
+```
+
+## How to Update Other Data (JSON files)
+
+The remaining data is located in the `src/data/` folder.
 
 ### 1. Conference Details
 Edit `src/data/config.json` to update:
